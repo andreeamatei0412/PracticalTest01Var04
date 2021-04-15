@@ -44,6 +44,16 @@ public class PracticalTest01Var04MainActivity extends AppCompatActivity {
                     }
                     break;
                 case R.id.navigate:
+                    Intent intent = new Intent(getApplicationContext(), PracticalTest01Var04SecondaryActivity.class);
+                    String ceva1 = first.getText().toString();
+                    String ceva2 = second.getText().toString();
+
+//                    if(checkbox1.isChecked())
+                        intent.putExtra("ceva1", ceva1);
+
+  //                  if(checkbox2.isChecked())
+                        intent.putExtra("ceva2", ceva2);
+                    startActivityForResult(intent, Constants.SECONDARY_ACTIVITY_REQUEST_CODE);
                     break;
             }
 
@@ -82,6 +92,8 @@ public class PracticalTest01Var04MainActivity extends AppCompatActivity {
         textView = (TextView)findViewById(R.id.textView);
 
         pressMeButton.setOnClickListener(buttonClickListener);
+        navigateButton.setOnClickListener(buttonClickListener);
+
 
         if (savedInstanceState != null) {
             if (savedInstanceState.containsKey(Constants.LEFT_COUNT)) {
@@ -99,6 +111,14 @@ public class PracticalTest01Var04MainActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             Log.d(Constants.BROADCAST_RECEIVER_TAG, intent.getStringExtra(Constants.BROADCAST_RECEIVER_EXTRA));
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (requestCode == Constants.SECONDARY_ACTIVITY_REQUEST_CODE) {
+            Toast.makeText(this, "The activity returned with result " + resultCode, Toast.LENGTH_LONG).show();
         }
     }
 }

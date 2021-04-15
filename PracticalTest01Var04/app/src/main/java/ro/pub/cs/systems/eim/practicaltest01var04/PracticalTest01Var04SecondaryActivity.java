@@ -25,6 +25,7 @@ public class PracticalTest01Var04SecondaryActivity extends AppCompatActivity {
                 case R.id.cancel_button:
                     setResult(RESULT_CANCELED, null);
                     break;
+
             }
             finish();
         }
@@ -39,9 +40,9 @@ public class PracticalTest01Var04SecondaryActivity extends AppCompatActivity {
         textView2 = (TextView)findViewById(R.id.text_view_2);
 
         Intent intent = getIntent();
-        if (intent != null && intent.getExtras().containsKey("text_to_send")) {
-            String text1 = intent.getStringExtra("text_to_send");
-            String text2 = intent.getStringExtra("text_to_send");
+        if (intent != null && intent.getExtras().containsKey("ceva1")) {
+            String text1 = intent.getStringExtra("ceva1");
+            String text2 = intent.getStringExtra("ceva2");
             textView1.setText(String.valueOf(text1));
             textView2.setText(String.valueOf(text2));
         }
